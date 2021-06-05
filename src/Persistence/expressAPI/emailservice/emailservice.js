@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const nodemailer = require('nodemailer');
-const { sendEmail } = require('./transporter')
+const transporter = require('./transporter')
 const schedule = require('node-schedule');
 var LocalStorage = require('node-localstorage').LocalStorage;
 const { messageBuilderDaily, messageBuilderConditional } = require('./messageBuilder')
@@ -38,7 +38,7 @@ schedule.scheduleJob('0 0 * * *', async function(){
         var exchangerate = rateslist.rates[dailysublist[i].sub]/rateslist.rates[dailysublist[i].base]
         const msg = messageBuilderDaily(email, name, base, exchangerate.toFixed(6) , sub)
         console.log(msg)
-        //sendEmail(msg)
+        sendEmail(msg)
     }
 
   });  
@@ -66,18 +66,17 @@ schedule.scheduleJob('0 */1 * * *', async function(){
             console.log(e)
             localStorage.setItem('nodefixrates', oldversion);
         }
-        if(data3){
-            if(data3.success){
-                //store the new version
-                localStorage.setItem('nodefixrates', JSON.stringify(data3));
-            }else{
-                //use the old version
-                localStorage.setItem('nodefixrates', oldversion);
-            }
+        console.log(data3.success, data3)
+        if(data3.success){
+            //store the new version
+            console.log('storing...')
+            localStorage.removeItem('nodefixrates')
+            localStorage.setItem('nodefixrates', JSON.stringify(data3));
         }else{
-            //If no data is returned the oldversion is used
+            //use the old version
             localStorage.setItem('nodefixrates', oldversion);
         }
+        
         
     //}
 
@@ -109,29 +108,29 @@ schedule.scheduleJob('0 */1 * * *', async function(){
             
             if (condition === 'equal'){
                 if(exchangerate === sub.con){
-                    var msg = messageBuilderConditional(userEmail,name, base.from,
+                    var msg1 = messageBuilderConditional(userEmail,name, base.from,
                     condition, sub.from, exchangerate.toFixed(6), sub.con)
-                    console.log(msg)
-                    //sendEmail(msg);
+                    console.log(msg1)
+                    sendEmail(msg1);
                 }
             }
 
             else if(condition === 'less than'){
                 console.log(exchangerate < sub.con)
                 if(exchangerate < sub.con){
-                    var msg = messageBuilderConditional(userEmail, name, base.from,
+                    var msg2 = messageBuilderConditional(userEmail, name, base.from,
                     condition, sub.from, exchangerate.toFixed(6), sub.con)
-                    console.log(msg)
-                    //sendEmail(msg);
+                    console.log(msg2)
+                    sendEmail(msg2);
                 }
             }
 
             else if(condition === 'greater than'){
                 if(exchangerate > sub.con){
-                    var msg = messageBuilderConditional(userEmail, name, base.from,
+                    var msg3 = messageBuilderConditional(userEmail, name, base.from,
                     condition, sub.from, exchangerate.toFixed(6), sub.con)
-                    console.log(msg)
-                    //sendEmail(msg);
+                    console.log(msg3)
+                    sendEmail(msg3);
                 }
             }
 
@@ -142,13 +141,14 @@ schedule.scheduleJob('0 */1 * * *', async function(){
 
 })
 
-// function sendEmail(msg){
-//     transporter.sendMail(msg, function(error, info){
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log('Email sent: ' + info.response);
-//     }
-//     });
-// }
+//this function uses the transporter to send emails
+function sendEmail(msg){
+    transporter.sendMail(msg, function(error, info){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+    });
+}
 

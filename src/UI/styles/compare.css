@@ -1,0 +1,18 @@
+input.field{
+    width: 7em;
+}
+
+.btn-sub{
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: #4da6e0;
+    color: #ffffff;
+}
+
+.btn-sub:hover {
+    background-color: #075b94;
+}
+

@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { FixerAPIController } from '../Application/FixerAPIController'
 import { SubscriptionController } from '../Application/SubscriptionController'
-import  CurrencyRow  from './conponents/CurrencyRow'
+import  CurrencyRow  from './conponents/currencyrow'
 import './styles/threshold.css'
-
-const e = process.env.EMAIL
-console.log(e) 
 
 
 export const Threshold = () => {
     const [currencyOptions, setcurrencyOptions] = useState(['JMD','USD'])
-    //const [selectedCurrency, setSelectedCurrency] = useState('')
     const [fromCurrency, setFromCurrency] = useState('EUR')
     const [toCurrency, setToCurrency] = useState('JMD')
     const [exchangeRate, setExchangeRate] = useState() 
@@ -86,7 +82,7 @@ export const Threshold = () => {
             <h1>Subscription Area</h1>
             <form onSubmit={handleSubmit}>
                 <div className='daily'>
-                    <input type="checkbox" name="daily" value="daily"/>
+                    <input className='check' type="checkbox" name="daily" value="daily"/>
                     <label for="daily">Receive Daily Updates</label>
                 </div>
                 <div className='tooltip'>
@@ -94,7 +90,6 @@ export const Threshold = () => {
                 selectedCurrency={fromCurrency}
                 onChangeCurrency={e => setFromCurrency(e.target.value)}
                 amount={fromAmount}
-                // onChangeAmount={handleFromChangeAmount}
                 />
                 <span className="tooltiptext">Cannot edit amount for precision purposes</span>
                 </div>
@@ -109,7 +104,7 @@ export const Threshold = () => {
                 amount={toAmount}
                 onChangeAmount={e => setToAmount(e.target.value)}
                 />
-                <button className="oth-btn">Subscribe</button>
+                <button className="thr-btn">Subscribe</button>
             </form>
         </div>
     )

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from "react-router-dom";
-import CurrencyRow from './conponents/CurrencyRow'
+import CurrencyRow from './conponents/currencyrow'
 import { FixerAPIController } from '../Application/FixerAPIController'
 import './styles/hoverpopup.css'
 import { Spinner } from './conponents/spinner'
+import './styles/compare.css'
 
 export const Compare = () => {
     const [currencyOptions, setcurrencyOptions] = useState(['banana', 'peaches', 'plums' ])
@@ -73,7 +74,7 @@ export const Compare = () => {
                 onChangeAmount={handleToChangeAmount}
                 />
                 <div className="tooltip">
-                    <button className="oth-btn" onClick={() => history.push('/subscribe')} >Subscribe</button>
+                    <button className='btn-sub' onClick={() => history.push('/subscribe')} >Subscribe</button>
                     <span className="tooltiptext">Subscribe to get daily updates</span>
                 </div>
             </div>

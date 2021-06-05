@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import { UserController } from '../Application/UserController'
 import { Spinner } from './conponents/spinner'
+import './styles/login.css'
 
 export const Login = () => {
     const [loading , setLoading] = useState(false)
@@ -23,7 +24,7 @@ export const Login = () => {
         log = await controller.loginUser(email, pass)
         if(await controller.loginUser(email, pass)){
             setLoading(false)
-            history.push('/') //route to 'compare'
+            history.push('/') //route to 'compare.js'
         }else{
             console.log(await controller.loginUser(email, pass))
             setLoading(false)
@@ -39,18 +40,18 @@ export const Login = () => {
                     <div className='title'>
                         <h1>Sign In</h1>
                     </div>
-                    <form onSubmit={handleSubmit}>
+                    <form className='form-container' onSubmit={handleSubmit}>
                         <div className='input-field'>
                             <div className="field-label"><label>Email Name</label></div>
-                            <div><input className="field" type='email' name='email' required/></div>
+                            <div><input className="login-field" type='email' name='email' required/></div>
                         </div>
                         <div className='input-field'>
                             <div className="field-label"><label>Password Name</label></div>
-                            <div><input className="field" type='text' name='pass' required/></div>
+                            <div><input className="login-field" type='text' name='pass' required/></div>
                         </div>
                         <div className="btn-container">
-                            <input className="oth-btn" type='submit' value='Sign In'/>
-                            <button className="oth-btn" onClick={() => history.push('/register')} >Sign Up</button>
+                            <input className='btn in' type='submit' value='Sign In'/>
+                            <button className='btn' onClick={() => history.push('/register')} >Sign Up</button>
                         </div>
                     </form>
                 </div>

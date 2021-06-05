@@ -1,0 +1,36 @@
+.login-field{
+    width: 13em;
+    border: solid gray;
+  border-radius: 5px;
+  height: 15px;
+  box-shadow: inset 2px 2px 2px 2px #a19d9d;
+  padding: 5px;
+}
+
+.input-field{
+    padding: 5px;
+}
+
+.btn-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.btn{
+    margin: 10px 10px 0px 10px;
+    width: 40%;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    background-color: #a3a1a1;
+    color: #ffffff;
+}
+
+.in{
+    background-color: #4da6e0;
+}
+  
+.in:hover {
+    background-color: #075b94;
+}

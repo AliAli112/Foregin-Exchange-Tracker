@@ -26,23 +26,23 @@ export const Register = () => {
                 <form onSubmit={handleSubmit}>
                     <div className='input-field'>
                         <div className="field-label"><label>First Name</label></div>
-                        <div><input className="field" type='text' name='fname' required/></div>
+                        <div><input className="login-field" type='text' name='fname' required/></div>
                     </div>
                     <div className='input-field'>
                         <div className="field-label"><label>Last Name</label></div>
-                        <div><input className="field" type='text' name='lname' required/></div>
+                        <div><input className="login-field" type='text' name='lname' required/></div>
                     </div>
                     <div className='input-field'>
                         <div className="field-label"><label>Email</label></div>
-                        <div><input className="field" type='text' name='email' required/></div>
+                        <div><input className="login-field" type='text' name='email' required/></div>
                     </div>
                     <div className='input-field'>
                         <div className="field-label"><label>Password</label></div>
-                        <div><input className="field" type='text' name='pass' required/></div>
+                        <div><input className="login-field" type='text' name='pass' required/></div>
                     </div>
                     <div className="btn-container">
-                        <input className="oth-btn" type='submit' value='Sign Up'/>
-                        <button className="oth-btn" onClick={() => history.push('/login')} >Sign In</button>
+                        <input className="btn in" type='submit' value='Sign Up'/>
+                        <button className="btn" onClick={() => history.push('/login')} >Sign In</button>
                     </div>
                 </form>
             </div>
