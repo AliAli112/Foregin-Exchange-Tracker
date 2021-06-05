@@ -12,14 +12,13 @@ thresholdrouter
     .route('/try')
     .get(getAllConditions)
 
-//format = {user: '{user}', condition: $, base: $, sub: $}
 async function getAllConditions(req, res){
     con.query('SELECT * FROM threshold', (err, result) =>{
         if(err) {
             res.status(400).send(err);
             return;
         }
-        if(result.length > 0) // sus
+        if(result.length > 0)
             return res.json(result);
         else res.json({});
     })

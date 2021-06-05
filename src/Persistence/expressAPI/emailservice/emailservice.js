@@ -27,7 +27,7 @@ schedule.scheduleJob('0 0 * * *', async function(){
     }catch(e){
         console.log(e)
     }
-    dailysublist = data2//need to test
+    dailysublist = data2
 
     rateslist = JSON.parse(localStorage.getItem('nodefixrates'))
     for(var i=0; i<dailysublist.length; i++){
@@ -58,24 +58,25 @@ schedule.scheduleJob('0 */1 * * *', async function(){
             //Update exchange rates from API
             console.log("Updating Exchange rates hourly...")
             let data = await server.get(fixerAPI.base + fixerAPI.key);
-            //console.log(data.data)
             if(data.status === 200){
                 data3 = data.data
+                console.log(data3)
+                if(data3.success){
+                    //store the new version
+                    //localStorage.removeItem('nodefixrates')
+                    localStorage.setItem('nodefixrates', JSON.stringify(data3));
+                }else{
+                    //use the old version
+                    localStorage.setItem('nodefixrates', oldversion);
+                }
             }
         }catch(e){
             console.log(e)
             localStorage.setItem('nodefixrates', oldversion);
         }
-        console.log(data3.success, data3)
-        if(data3.success){
-            //store the new version
-            console.log('storing...')
-            localStorage.removeItem('nodefixrates')
-            localStorage.setItem('nodefixrates', JSON.stringify(data3));
-        }else{
-            //use the old version
+        if(!data3)
             localStorage.setItem('nodefixrates', oldversion);
-        }
+           
         
         
     //}
@@ -96,6 +97,7 @@ schedule.scheduleJob('0 */1 * * *', async function(){
         }
         conditionalsubslist = data4
 
+        //getting the rates and sending the conditional emails
         rateslist = JSON.parse(localStorage.getItem('nodefixrates'))
         for(var i=0; i < conditionalsubslist.length; i++){
             var userEmail = JSON.parse(conditionalsubslist[i].user).userEmail

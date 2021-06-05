@@ -13,7 +13,6 @@ export class UserController{
         try{
             var user = {userFirstname: fname, userLastname: lname, userEmail: email, userPassword: pass}
             let res = await this.server.post('http://localhost:5000/register', {
-             //to check if in database first
             userFirstName: user.userFirstname,
             userLastName: user.userLastname,
             dailysNum: '0',
@@ -40,6 +39,7 @@ export class UserController{
             }else{
                 console.log('authenticiation failed or customer email not correct')
                 alert('Authenticiation failed, No such customer found')
+                return false;
             }
         });
         console.log(sessionStorage.getItem('user'))
@@ -68,16 +68,4 @@ export class UserController{
         sessionStorage.removeItem('user')
     }
 
-    public isUserExist = async (email: string, pass: string) => {
-        let res = await this.server.post('http://localhost:5000/login', {
-            userEmail: email,
-        }).then((res) => {
-            console.log(res)
-            if(res.data.length > 0){
-                alert('user exists')
-                return true
-            }
-        });
-        return false
-    }
 }

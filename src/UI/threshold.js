@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FixerAPIController } from '../Application/FixerAPIController'
 import { SubscriptionController } from '../Application/SubscriptionController'
 import  CurrencyRow  from './conponents/currencyrow'
+import 'reactjs-popup/dist/index.css';
 import './styles/threshold.css'
 
 
@@ -50,27 +51,30 @@ export const Threshold = () => {
         if(condition === 'equal'){
             if(toAmount === exchangeRate)
             {
-                alert('=')
+                alert('The rates are already equal. Subscription failed')
             }else{
                 //if there are no errors    
                 //store to database
                 controller.addConditionalSub(JSON.stringify(usertosend), condition, JSON.stringify(base), JSON.stringify(sub))
+                alert('You have been subscribed!')
             }
         } 
         else if(condition ==='less than'){
             if(toAmount > exchangeRate)
             {
-                alert('The exchange rate is already less')
+                alert('The exchange rate is already less. Subscription failed')
             }else{
                 controller.addConditionalSub(JSON.stringify(usertosend), condition, JSON.stringify(base), JSON.stringify(sub))     //store to database subscription controller conditionalsub
+                alert('You have been subscribed!')
             }
         } 
         else if(condition === 'greater than'){
             if(toAmount < exchangeRate)
             {
-                alert('The exchange rate is already more')
+                alert('The exchange rate is already more. Subscription failed')
             }else{
                 controller.addConditionalSub(JSON.stringify(usertosend), condition, JSON.stringify(base), JSON.stringify(sub))     //store to database subscription controller conditionalsub
+                alert('You have been subscribed!')
             }
         }
         

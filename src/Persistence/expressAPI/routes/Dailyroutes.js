@@ -9,7 +9,7 @@ dailysrouter
 
 dailysrouter
     .route('/')
-    .post(addSub)
+    .post(addSub) //route to add daily subs to database
 
 
 async function getAllSubs(req, res){

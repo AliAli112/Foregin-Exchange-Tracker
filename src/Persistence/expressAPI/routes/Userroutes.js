@@ -26,7 +26,7 @@ async function getAllUsers(req, res){
             res.status(400).send(err);
             return;
         }
-        if(true) // sus
+        if(true)
             return res.json(result);
         else res.json({});
     })

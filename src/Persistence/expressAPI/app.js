@@ -47,7 +47,6 @@ app.on('listening', async function getAllDailySubs(){
                 try{
                     console.log("Controller get all fixer")
                     let data = await server.get(fixerAPI.base + fixerAPI.key);
-                    //console.log(data.data)
                     if(data.status === 200){
                         data3 = data.data
                     }

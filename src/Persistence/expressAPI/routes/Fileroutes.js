@@ -7,7 +7,7 @@ const filerouter = express.Router()
 
 filerouter
     .route('/get')
-    .get(getFile)
+    .get(getFile)  //route to get the localstrage which stores fixedrates (updated hourly)
 
 async function getFile(req, res){
     
