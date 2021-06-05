@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
-
+import { Register } from './UI/register'
+import { Login } from './UI/login'
+import { Compare } from './UI/compare'
+import { Threshold } from './UI/threshold'
+import { ProtectedRoutes } from './Security/ProtectedRoutes'
+import { FixerAPIController } from './Application/FixerAPIController'
+ 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route exact path = '/' render={() => ( <Compare /> )}/>
+          <Route exact path = '/register' render={() => (<Register />) }/>
+          <Route exact path = '/login' render={() => ( <Login /> )}/>
+          <ProtectedRoutes exact path = '/subscribe' component={Threshold}/>
+        </Switch>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.daily{
+    padding-bottom: 10px;
+}
+
+.equal-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px 5px 5px 0px;
+}
+
+input.radio{
+    margin-right: 10px;
+}

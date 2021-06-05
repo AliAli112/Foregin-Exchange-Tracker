@@ -1,0 +1,27 @@
+
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+input.field{
+    width: 7em;
+    text-align: end;
+}
+
+select{
+  margin: 0px 0px 0px 7px;
+  height: 27px;
+  border-radius: 5px;
+}
+
+.equals{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 2px;
+}
+
